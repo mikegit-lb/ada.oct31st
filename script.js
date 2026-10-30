@@ -11,21 +11,26 @@ const state = {
   level: 1,
   answered: new Set(),
   speakingStars: {},
-  sectionScores: {},
-  flat: []
+  flat: [],
+  ranges: []
 };
+
+const $ = id => document.getElementById(id);
 
 function buildFlat() {
   state.flat = [];
+  state.ranges = [];
+  let offset = 0;
   data.sections.forEach((sec, si) => {
     const qs = sec.type === 'reading' ? sec.parts.flatMap(p => p.questions) : sec.questions;
+    const start = offset;
     qs.forEach((q, qi) => {
       state.flat.push({ sectionIdx: si, section: sec, localIdx: qi, q });
+      offset++;
     });
+    state.ranges.push({ start, end: offset, section: sec });
   });
 }
-
-const $ = id => document.getElementById(id);
 
 function init() {
   buildFlat();
@@ -47,11 +52,12 @@ function startQuiz() {
   state.level = 1;
   state.answered = new Set();
   state.speakingStars = {};
-  showSectionIntro();
+  showSectionIntro(0);
 }
 
-function showSectionIntro() {
-  const sec = data.sections[state.sectionIdx];
+function showSectionIntro(si) {
+  state.sectionIdx = si;
+  const sec = data.sections[si];
   const container = $('section-intro-content');
   container.innerHTML = `
     <div class="icon">${sec.icon}</div>
@@ -65,11 +71,12 @@ function showSectionIntro() {
 }
 
 function beginSection() {
+  const range = state.ranges[state.sectionIdx];
+  state.qIdx = range.start;
   $('section-screen').classList.remove('active');
   $('quiz-screen').classList.add('active');
   $('progress-wrap').style.display = 'block';
   $('hud').style.display = 'flex';
-  state.qIdx = 0;
   renderQuestion();
 }
 
@@ -84,20 +91,21 @@ function renderQuestion() {
   const block = document.createElement('div');
   block.className = 'question-block';
 
+  const range = state.ranges[state.sectionIdx];
   const num = document.createElement('div');
   num.className = 'q-number';
-  num.textContent = `Question ${state.qIdx + 1} of ${state.flat.length}`;
+  num.textContent = `Question ${state.qIdx - range.start + 1} of ${range.end - range.start}`;
   block.appendChild(num);
 
   if (q.type === 'reading') {
+    const part = section.parts.find(p => p.questions.includes(q));
     const scene = document.createElement('div');
     scene.className = 'reading-scene';
-    scene.innerHTML = scenes[q.scene ? q.scene : 'park-p' + (section.parts.find(p => p.questions.includes(q)) || {}).part];
+    scene.innerHTML = scenes[part.scene];
     block.appendChild(scene);
-
     const partText = document.createElement('div');
     partText.className = 'reading-part';
-    partText.innerHTML = `<b>Part ${section.parts.find(p => p.questions.includes(q)).part}:</b> ${section.parts.find(p => p.questions.includes(q)).text}`;
+    partText.innerHTML = `<b>Part ${part.part}:</b> ${part.text}`;
     block.appendChild(partText);
   } else if (q.type === 'prep-v') {
     const scene = document.createElement('div');
@@ -243,8 +251,17 @@ function award(points) {
 
 function nextQuestion() {
   state.qIdx++;
-  if (state.qIdx >= state.flat.length) showResult();
-  else renderQuestion();
+  const range = state.ranges[state.sectionIdx];
+  if (state.qIdx >= range.end) {
+    state.sectionIdx++;
+    if (state.sectionIdx < data.sections.length) {
+      showSectionIntro(state.sectionIdx);
+    } else {
+      showResult();
+    }
+    return;
+  }
+  renderQuestion();
 }
 
 function updateHud() {
