@@ -484,11 +484,16 @@ function confetti() {
   tick();
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+function attach() {
   $('start-btn').onclick = startQuiz;
   $('section-btn').onclick = beginSection;
   $('restart-btn').onclick = restart;
   const snd = $('sound-toggle');
   let on = true;
   snd.onclick = () => { on = !on; snd.textContent = on ? '\u266b' : '\u266a'; };
-});
+}
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', attach);
+} else {
+  attach();
+}
