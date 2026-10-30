@@ -9,7 +9,7 @@ A gamified, single-file webpage quiz for young learners (A1 level) covering **pr
 | `index.html` | Page structure (start, section intros, quiz, results) |
 | `style.css` | Kid-friendly card UI |
 | `script.js` | Quiz engine: scoring, streaks, levels, progress, confetti |
-| `questions.json` | 100 questions (30 grammar, 30 prepositions, 20 reading, 20 speaking) |
+| `questions.json` | 120 questions (30 grammar, 30 prepositions, 20 reading, 20 speaking, 20 existence) |
 
 ## Features
 
@@ -17,6 +17,7 @@ A gamified, single-file webpage quiz for young learners (A1 level) covering **pr
 - **Prepositions (30):** SVG visuals — choose `in`, `on`, `under`, `behind`, `in front of`, `next to`, `between`.
 - **Reading (20):** illustrated 4-part park story with comprehension questions per part.
 - **Speaking (20):** open-ended prompts with star self-rating and sentence starters.
+- **There is / There are (20):** classroom visuals — singular vs plural nouns, choose `There is` or `There are`.
 - **Gamification:** score, streak, level, progress bar, per-section intros, confetti on streaks, best-score persistence.
 - **No build step:** open `index.html` directly in a browser (loads `questions.json` if served, otherwise falls back to embedded data).
 
@@ -26,6 +27,7 @@ A gamified, single-file webpage quiz for young learners (A1 level) covering **pr
 2. Prepositions - Where is the Cat? (📍)
 3. Reading - A Fun Day in the Park (📖)
 4. Speaking - Let's Talk! (🎤)
+5. There Is / There Are - Look Around! (👀)
 
 ## Usage
 
