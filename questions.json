@@ -146,6 +146,35 @@
         {"id":"s19","text":"Is it raining today?","tip":"Use: Yes, it is ... / No, it is ..."},
         {"id":"s20","text":"Tell me one thing you can see in the park picture.","tip":"Use: I can see a ..."}
       ]
+    },
+    {
+      "id": "existence",
+      "title": "There Is / There Are - Look Around!",
+      "type": "existence",
+      "icon": "👀",
+      "intro": "Choose There is (one thing) or There are (more than one). Look at the picture.",
+      "questions": [
+        {"id":"e1","scene":"classroom-one-book","text":"______ a book on the desk.","options":["There is","There are"],"answer":"There is","explanation":"One book = There is."},
+        {"id":"e2","scene":"classroom-three-books","text":"______ books on the desk.","options":["There is","There are"],"answer":"There are","explanation":"Three books = There are."},
+        {"id":"e3","scene":"classroom-one-chair","text":"______ a chair.","options":["There is","There are"],"answer":"There is","explanation":"One chair = There is."},
+        {"id":"e4","scene":"classroom-two-chairs","text":"______ chairs.","options":["There is","There are"],"answer":"There are","explanation":"Two chairs = There are."},
+        {"id":"e5","scene":"classroom-one-window","text":"______ a window.","options":["There is","There are"],"answer":"There is","explanation":"One window = There is."},
+        {"id":"e6","scene":"classroom-two-windows","text":"______ windows.","options":["There is","There are"],"answer":"There are","explanation":"Two windows = There are."},
+        {"id":"e7","scene":"classroom-one-door","text":"______ a door.","options":["There is","There are"],"answer":"There is","explanation":"One door = There is."},
+        {"id":"e8","scene":"classroom-one-teacher","text":"______ a teacher.","options":["There is","There are"],"answer":"There is","explanation":"One teacher = There is."},
+        {"id":"e9","scene":"classroom-two-students","text":"______ students.","options":["There is","There are"],"answer":"There are","explanation":"Two students = There are."},
+        {"id":"e10","scene":"classroom-one-clock","text":"______ a clock on the wall.","options":["There is","There are"],"answer":"There is","explanation":"One clock = There is."},
+        {"id":"e11","scene":"classroom-five-pencils","text":"______ pencils in the box.","options":["There is","There are"],"answer":"There are","explanation":"Five pencils = There are."},
+        {"id":"e12","scene":"classroom-one-bag","text":"______ a bag on the floor.","options":["There is","There are"],"answer":"There is","explanation":"One bag = There is."},
+        {"id":"e13","scene":"classroom-three-bags","text":"______ bags on the floor.","options":["There is","There are"],"answer":"There are","explanation":"Three bags = There are."},
+        {"id":"e14","scene":"classroom-one-board","text":"______ a whiteboard.","options":["There is","There are"],"answer":"There is","explanation":"One whiteboard = There is."},
+        {"id":"e15","scene":"classroom-two-posters","text":"______ posters on the wall.","options":["There is","There are"],"answer":"There are","explanation":"Two posters = There are."},
+        {"id":"e16","scene":"classroom-one-plant","text":"______ a plant.","options":["There is","There are"],"answer":"There is","explanation":"One plant = There is."},
+        {"id":"e17","scene":"classroom-four-computers","text":"______ computers.","options":["There is","There are"],"answer":"There are","explanation":"Four computers = There are."},
+        {"id":"e18","scene":"classroom-one-eraser","text":"______ an eraser.","options":["There is","There are"],"answer":"There is","explanation":"One eraser = There is."},
+        {"id":"e19","scene":"classroom-two-rulers","text":"______ rulers.","options":["There is","There are"],"answer":"There are","explanation":"Two rulers = There are."},
+        {"id":"e20","scene":"classroom-one-ball","text":"______ a ball in the gym.","options":["There is","There are"],"answer":"There is","explanation":"One ball = There is."}
+      ]
     }
   ]
 }

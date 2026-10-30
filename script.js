@@ -318,6 +318,26 @@ function scenesMap() {
     'dog-house-in': prepScene('dog', 'house', 'in'),
     'dog-house-on': prepScene('dog', 'house', 'on'),
     'dog-house-under': prepScene('dog', 'house', 'under'),
+    'classroom-one-book': classroomScene('book', 1),
+    'classroom-three-books': classroomScene('book', 3),
+    'classroom-one-chair': classroomScene('chair', 1),
+    'classroom-two-chairs': classroomScene('chair', 2),
+    'classroom-one-window': classroomScene('window', 1),
+    'classroom-two-windows': classroomScene('window', 2),
+    'classroom-one-door': classroomScene('door', 1),
+    'classroom-one-teacher': classroomScene('teacher', 1),
+    'classroom-two-students': classroomScene('student', 2),
+    'classroom-one-clock': classroomScene('clock', 1),
+    'classroom-five-pencils': classroomScene('pencil', 5),
+    'classroom-one-bag': classroomScene('bag', 1),
+    'classroom-three-bags': classroomScene('bag', 3),
+    'classroom-one-board': classroomScene('board', 1),
+    'classroom-two-posters': classroomScene('poster', 2),
+    'classroom-one-plant': classroomScene('plant', 1),
+    'classroom-four-computers': classroomScene('computer', 4),
+    'classroom-one-eraser': classroomScene('eraser', 1),
+    'classroom-two-rulers': classroomScene('ruler', 2),
+    'classroom-one-ball': classroomScene('ball', 1),
     'park-p1': parkScene(1),
     'park-p2': parkScene(2),
     'park-p3': parkScene(3),
@@ -367,6 +387,58 @@ function prepScene(obj, container, rel) {
   }
 
   return `<svg width="280" height="220" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;max-width:100%;">${containerDraw}${objDraw}</svg>`;
+}
+
+function classroomScene(obj, count) {
+  const W = 320, H = 220;
+  const cx = 160, baseY = 150;
+  const gap = 40;
+  const startX = cx - ((count - 1) * gap) / 2;
+  let items = '';
+  for (let i = 0; i < count; i++) {
+    const x = startX + i * gap;
+    items += drawItem(obj, x, baseY);
+  }
+  return `<svg width="320" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;max-width:100%;"><rect x="20" y="${baseY+10}" width="280" height="10" fill="#8d6e63"/><rect x="20" y="${baseY}" width="280" height="4" fill="#5d4037"/><text x="${cx}" y="${baseY-12}" font-family="sans-serif" font-size="13" fill="#5d4037" text-anchor="middle" font-weight="700">Desk</text>${items}</svg>`;
+}
+
+function drawItem(obj, x, y) {
+  const s = 18;
+  switch (obj) {
+    case 'book':
+      return `<rect x="${x-10}" y="${y-22}" width="20" height="14" rx="2" fill="#ffe082" stroke="#fbc02d" stroke-width="2"/><rect x="${x-10}" y="${y-22}" width="4" height="14" fill="#fbc02d"/>`;
+    case 'chair':
+      return `<rect x="${x-10}" y="${y-20}" width="20" height="10" fill="#ffcc80" stroke="#ef6c00" stroke-width="2"/><rect x="${x-2}" y="${y-10}" width="4" height="10" fill="#ef6c00"/>`;
+    case 'window':
+      return `<rect x="${x-12}" y="${y-24}" width="24" height="16" rx="2" fill="#e3f2fd" stroke="#0288d1" stroke-width="2"/><line x1="${x}" y1="${y-24}" x2="${x}" y2="${y-8}" stroke="#0288d1" stroke-width="2"/><line x1="${x-12}" y1="${y-16}" x2="${x+12}" y2="${y-16}" stroke="#0288d1" stroke-width="2"/>`;
+    case 'door':
+      return `<rect x="${x-10}" y="${y-26}" width="20" height="26" rx="2" fill="#ffd6ba" stroke="#e67e22" stroke-width="2"/><circle cx="${x+4}" cy="${y-14}" r="2" fill="#bf360c"/>`;
+    case 'teacher':
+    case 'student':
+      return `<circle cx="${x}" cy="${y-24}" r="7" fill="#ffab91" stroke="#bf360c" stroke-width="2"/><rect x="${x-8}" y="${y-17}" width="16" height="14" fill="#4fc3f7" stroke="#0288d1" stroke-width="2"/>`;
+    case 'clock':
+      return `<circle cx="${x}" cy="${y-20}" r="8" fill="#fff" stroke="#795548" stroke-width="3"/><line x1="${x}" y1="${y-20}" x2="${x}" y2="${y-28}" stroke="#795548" stroke-width="2"/><line x1="${x}" y1="${y-20}" x2="${x+6}" y2="${y-20}" stroke="#795548" stroke-width="2"/>`;
+    case 'pencil':
+      return `<rect x="${x-9}" y="${y-26}" width="4" height="20" fill="#fff59d" stroke="#fbc02d" stroke-width="2"/><polygon points="${x-9},${y-26} ${x},${y-34} ${x+9},${y-26}" fill="#ffcc80" stroke="#ef6c00" stroke-width="2"/><rect x="${x-9}" y="${y-6}" width="4" height="6" fill="#ffab91"/>`;
+    case 'bag':
+      return `<rect x="${x-10}" y="${y-22}" width="20" height="14" rx="4" fill="#ffcc80" stroke="#ef6c00" stroke-width="2"/><rect x="${x-6}" y="${y-20}" width="8" height="4" fill="#ef6c00"/>`;
+    case 'board':
+      return `<rect x="${x-14}" y="${y-28}" width="28" height="18" rx="2" fill="#263238" stroke="#455a64" stroke-width="2"/><rect x="${x-12}" y="${y-26}" width="24" height="14" fill="#eceff1"/>`;
+    case 'poster':
+      return `<rect x="${x-12}" y="${y-26}" width="24" height="16" rx="2" fill="#ffab91" stroke="#bf360c" stroke-width="2"/><circle cx="${x}" cy="${y-18}" r="3" fill="#fff"/>`;
+    case 'plant':
+      return `<rect x="${x-2}" y="${y-12}" width="4" height="12" fill="#795548"/><circle cx="${x}" cy="${y-24}" r="8" fill="#6ab04c"/>`;
+    case 'computer':
+      return `<rect x="${x-14}" y="${y-18}" width="28" height="4" rx="1" fill="#78909c" stroke="#455a64" stroke-width="2"/><rect x="${x-12}" y="${y-24}" width="24" height="14" fill="#eceff1" stroke="#78909c" stroke-width="2"/>`;
+    case 'eraser':
+      return `<rect x="${x-8}" y="${y-14}" width="16" height="8" rx="2" fill="#fff176" stroke="#fbc02d" stroke-width="2"/>`;
+    case 'ruler':
+      return `<rect x="${x-16}" y="${y-14}" width="32" height="4" rx="1" fill="#b0bec5" stroke="#78909c" stroke-width="2"/><line x1="${x-14}" y1="${y-12}" x2="${x-14}" y2="${y-16}" stroke="#78909c" stroke-width="1"/><line x1="${x}" y1="${y-12}" x2="${x}" y2="${y-16}" stroke="#78909c" stroke-width="1"/>`;
+    case 'ball':
+      return `<circle cx="${x}" cy="${y-18}" r="8" fill="#ff5252" stroke="#b71c1c" stroke-width="2"/>`;
+    default:
+      return `<circle cx="${x}" cy="${y-18}" r="8" fill="#ffab91"/>`;
+  }
 }
 
 function parkScene(part) {
