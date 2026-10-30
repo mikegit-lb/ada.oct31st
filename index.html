@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Continuous & Prepositions Adventure — A1 Kids Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="title">Present Continuous &amp; Prepositions Adventure</div>
+  <div class="subtitle">A1 Level &bull; Grammar &bull; Reading &bull; Speaking &bull; 100 Questions</div>
+</header>
+
+<div id="start-screen" class="screen active card">
+  <div style="font-size:3rem;margin-bottom:10px;">&#127881;</div>
+  <h1 style="font-size:1.6rem;color:var(--primary);margin-bottom:8px;">Welcome to the Quiz!</h1>
+  <p style="color:var(--muted);margin-bottom:18px;">Practise present continuous (-ing) and prepositions with pictures, reading and speaking.</p>
+  <div style="margin-bottom:16px;color:var(--muted);font-size:0.9rem;">Best score: <span id="best-score" style="font-weight:800;color:var(--primary);">0</span></div>
+  <button id="start-btn" class="btn">Start Adventure</button>
+</div>
+
+<div id="section-screen" class="screen card">
+  <div id="section-intro-content" class="section-intro"></div>
+  <button id="section-btn" class="btn">Start this section</button>
+</div>
+
+<div id="quiz-screen" class="screen card">
+  <div class="hud" id="hud">
+    <div class="stat">Score <span id="score-val">0</span></div>
+    <div class="stat badge">Streak <span id="streak-val">0</span></div>
+    <div class="stat badge">Level <span id="level-val">1</span></div>
+  </div>
+  <div class="progress-wrap"><div id="progress-bar" class="progress-bar"></div></div>
+  <div id="question-container"></div>
+</div>
+
+<div id="result-screen" class="screen card result-screen">
+  <div style="font-size:3rem;margin-bottom:10px;">&#127942;</div>
+  <div class="level-badge" id="level-badge">Level 1</div>
+  <div class="big-score" id="final-score">0</div>
+  <p id="result-msg">Great job!</p>
+  <p style="color:var(--muted);margin-bottom:18px;">Best score: <span id="best-score-final" style="font-weight:800;">0</span></p>
+  <button id="restart-btn" class="btn">Play Again</button>
+</div>
+
+<canvas id="confetti" class="confetti"></canvas>
+<button id="sound-toggle" title="Sound">&#9835;</button>
+<footer>A1 ESL Quiz for Young Learners &#8226; Present Continuous &amp; Prepositions</footer>
+<script src="script.js"></script>
+</body>
+</html>
