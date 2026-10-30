@@ -79,6 +79,14 @@ function beginSection() {
   renderQuestion();
 }
 
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function renderQuestion() {
   const item = state.flat[state.qIdx];
   if (!item) { showResult(); return; }
@@ -190,10 +198,12 @@ function renderQuestion() {
   } else {
     const opts = document.createElement('div');
     opts.className = 'options';
-    q.options.forEach((o, i) => {
+    const shuffledOptions = shuffleArray([...q.options]);
+    shuffledOptions.forEach((o, i) => {
       const b = document.createElement('button');
       b.className = 'opt';
       b.textContent = o;
+      b.dataset.answer = o === q.answer;
       b.onclick = () => handleChoice(b, o, q);
       opts.appendChild(b);
     });
@@ -212,10 +222,10 @@ function handleChoice(btn, choice, q) {
   if (state.answered.has(q.id)) return;
   state.answered.add(q.id);
   const opts = document.querySelectorAll('.opt');
-  const ok = choice === q.answer;
+  const ok = btn.dataset.answer === 'true';
   opts.forEach(b => {
     b.disabled = true;
-    if (b.textContent === q.answer) b.classList.add('correct');
+    if (b.dataset.answer === 'true') b.classList.add('correct');
     if (b === btn && !ok) b.classList.add('wrong');
   });
   if (ok) { btn.classList.add('correct-anim'); award(10); }
